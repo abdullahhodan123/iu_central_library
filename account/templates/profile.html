@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">{{ user.get_full_name }}'s Profile</h4>
+        </div>
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <a class="btn btn-outline-primary" href="{% url 'update' %}">Edit Profile</a>
+          </div>
+          <h5 class="text-center mb-4">User Id:{{user.id}}</h5>
+
+          <h5 class="text-center mb-4">Borrowed Books</h5>
+
+          {% if Borrow %}
+  <ul class="list-group">
+    {% for borrow in Borrow %}
+      <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+        <div class="mb-2 mb-md-0">
+          <strong>Book:</strong> {{ borrow.book.book_name }} <br>
+          <strong>Book Id:</strong> {{ borrow.book.id }} <br>
+          <strong>Borrow Date:</strong> {{ borrow.borrow_date }}
+        </div>
+        <div>
+          {% if borrow.is_returned %}
+            <span class="badge bg-success p-2">Returned</span>
+          
+          {% else %}
+            {% if not borrow.is_received %}
+              <span class="badge bg-warning text-dark p-2">Requested</span>
+            {% else %}
+             <button class="btn btn-danger"> Please Return</button>
+              <!-- <a class="btn btn-danger mb-2" href="{% url 'return_book' borrow.book.id %}">Return</a> -->
+            {% endif %}
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+    <p class="text-muted">No borrowed books found.</p>
+   {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

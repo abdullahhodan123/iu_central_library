@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+
+{% block body %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="bg-white col-md-6 rounded shadow-sm">
+        
+        <div class="text-center">
+        <h1>Deposite Money</h1>
+        </div>
+
+        <form method="post" class="p-4">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="amount" class="font-weight-bold">Amount</label>
+                <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" required>
+            </div>
+
+            {% if form.amount.errors %}
+                {% for error in form.amount.errors %}
+                    <p class="text-danger small">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <div class="text-center mt-2">
+                <button type="submit" class="btn btn-primary btn-block font-weight-bold">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

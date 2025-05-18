@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body style="background: linear-gradient(135deg, #d4dfe2, #b7c4b2);">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+  <img src="{% static 'download.png' %}" alt="Library Logo" width="40" height="40" class="d-inline-block align-text-top rounded-circle">
+  <span class="fw-bold text-dark">Central Library IU</span>
+</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'about_library'%}">About Library</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'gellary'%}">Gellary</a>
+              </li>
+              
+               {%if request.user.is_authenticated%}
+              
+                <li class="nav-item">
+                
+                <a class="nav-link text-dark" href="{% url 'addbooks' %}">Donet Books</a>
+
+
+              </li>  
+             
+
+             {%endif%}
+             
+              
+              
+            </ul>
+            <ul class="navbar-nav me auto mb-2 mb-lg-0">
+              {%if request.user.is_authenticated%}
+
+              <!-- <li class="nav-item">
+                <a class="nav-link btn btn-info text-dark" href="{%url 'deposit_money'%}">Deposite</a>
+              </li> -->
+              
+              <li class="nav-item">
+                <a class="nav-link btn btn-info text-dark" href="{%url 'profile'%}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-danger text-dark" href="{%url 'logout'%}">Log Out</a>
+              </li>
+
+             {%else%}
+             <li class="nav-item">
+              <a class="nav-link btn btn-info text-dark" href="{%url 'singup'%}">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-info text-dark" href="{%url 'user_login'%}">Log In</a>
+            </li>
+
+             {%endif%}
+             </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+      {% for i in messages %} 
+
+        <h3 class="text-{{i.tags}}">{{i}}</h3>
+
+
+      {% endfor %}
+
+
+
+      {% comment %} <div style="background-color:#0cffff"> {% endcomment %}
+
+        {%block body%}
+      <h1>Hello, world!</h1>
+      {%endblock%}
+    </div>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- About -->
+      <div class="col-md-4 mb-3">
+        <h5>About Library</h5>
+        <p>Central Library of Islamic University aims to provide a wide range of academic resources to students and faculty. Explore, learn, and grow with us.</p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'home' %}" class="text-decoration-none text-light">Home</a></li>
+          <li><a href="{% url 'addbooks' %}" class="text-decoration-none text-light">Add Books</a></li>
+          <li><a href="{% url 'profile' %}" class="text-decoration-none text-light">Profile</a></li>
+          <li><a href="{% url 'user_login' %}" class="text-decoration-none text-light">Login</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-4 mb-3">
+        <h5>Contact</h5>
+        <p>Email: <a href="mailto:library@iu.ac.bd" class="text-light text-decoration-none">library@iu.ac.bd</a></p>
+        <p>Phone: +880 1234-567890</p>
+        <p>Address: Islamic University, Kushtia, Bangladesh</p>
+      </div>
+    </div>
+
+    <hr class="border-secondary">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2025 Central Library IU. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+</body>
+</html>
