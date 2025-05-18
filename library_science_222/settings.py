@@ -30,7 +30,12 @@ SECRET_KEY = 'django-insecure-y%xzw=mw@v#s&htdct8^t*6!1pe*on38eb^536atqc$8naq%$h
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://lirary-science_222.onrender.com']
+# CSRF_TRUSTED_ORIGINS = ['https://lirary-science_222.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://lirary-science_222.onrender.com',
+    'https://iu-central-library-5.onrender.com'
+]
+
 
 
 # Application definition
