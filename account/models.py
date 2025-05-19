@@ -26,7 +26,7 @@ class Account(models.Model):
     roll = models.IntegerField( null=True, blank=True)
     reg = models.IntegerField( null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
-    session = models.CharField(max_length=20, null=True, blank=True)
+    session = models.CharField(max_length=20, null=True, blank=True,default='2020-2021')
 
     def __str__(self):
         return self.user.username
