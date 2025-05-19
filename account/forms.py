@@ -17,7 +17,7 @@ class UserRegistrationForm(UserCreationForm):
     roll=forms.IntegerField(required=True)
     department=forms.CharField(required=True)
     reg=forms.IntegerField(required=True)
-    session=forms.IntegerField(required=True)
+    session=forms.CharField(required=True)
     email=forms.CharField(required=True)
     
     
